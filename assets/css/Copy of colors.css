@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+/*
+	per i colori:
+	http://www.colourlovers.com/palette/1930/cheer_up_emo_kid
+*/
+
+body {
+	background: #556270;
+}
+
+.header {
+	background-color: #4ECDC4;
+	border-color: white;
+}
+.sidebar {
+	background-color: #556270;
+	border-color: white;
+}
+.sidebar_video_info {
+	color: white;
+}
+
+.login { 
+  background-color: #FF6B6B;
+  border-color: white;
+  color: white;
+}

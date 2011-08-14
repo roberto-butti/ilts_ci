@@ -1,0 +1,289 @@
+body { /*font-family: Verdana, Helvetica, sans-serif; */
+	font-family: 'Nobile', arial, serif;
+	
+}
+
+#container {
+  	
+}
+
+.boxed {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  /*IE DOES NOT SUPPORT BORDER RADIUS*/
+  -moz-box-shadow: 5px 5px 5px #000000;
+  -webkit-box-shadow: 5px 5px 5px #000000;
+  box-shadow: 5px 5px 5px #000000;
+  filter: progid :   DXImageTransform.Microsoft.Shadow (   strength =   5,
+    direction =   135, color =   '#000000' );
+  -ms-filter:
+    "progid:DXImageTransform.Microsoft.Shadow(strength=5, Direction=135, Color='#000000')";
+  /*Shadows look very different in IE (Only cardinal directions supported)*/
+  /*INNER ELEMENTS MUST NOT BREAK THIS ELEMENTS BOUNDARIES*/
+  /*Element should have a background-color*/
+  /*All filters must be placed together*/
+  /*IE DOES NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+}
+
+.header {
+	margin-right: 0px;
+	border-width: 0px;
+	border-style: solid;
+	font-family: 'Lobster', arial, serif;
+	font-size: 48px;
+	text-shadow: 4px 4px 4px #aaa;
+
+}
+
+.headerwide {
+	margin-bottom: 10px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.login {
+	margin-top:10px;
+	margin-left: 0px;
+  border-width: 0px;
+  border-style: solid;
+	text-align: right;
+	text-decoration: none;
+	font-size: 14px;
+	/*font-family: 'Nobile', serif;*/
+	text-transform: uppercase;
+}
+
+.login a {
+	color: #c5d6db;
+}
+
+.sidebar {
+  border-width: 1px;
+  border-style: solid;
+
+}
+	
+.rowwide {
+	padding: 6px 6px 6px 6px;
+	margin: 00px 0px 10px 0px;
+}
+
+.header a {
+	color: #000000;
+	text-decoration: none;
+	font-size: 36px;
+	/*font-family: "Myriad Pro";*/
+}
+
+.video_title { /*background-color: #3b7687;*/
+	background-color: light-grey;
+	/*color: #c5d6db;*/
+	color: grey;
+	text-align: left;
+	text-decoration: none;
+	font-size: 14px;
+	/*font-family: 'Nobile', serif;*/ /*text-transform: uppercase;*/
+}
+
+.video_description { /*background-color: #3b7687;*/
+	background-color: light-grey;
+	/*color: #c5d6db;*/
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	font-size: 12px;
+	/*font-family: 'Nobile', serif;*/ /*text-transform: uppercase;*/
+}
+
+.video_player {
+	text-align: center;
+}
+
+.sidebar_video_info {
+	padding: 10px;
+	/* background-color: #3b7687; */
+	/* color: #c5d6db; */
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.video_info {
+	padding-top: 10px;
+}
+
+.content_main {
+  border-width: 0px;
+  border-style: solid;
+  margin-bottom: 10px;
+}
+
+.video_title {
+	background-color: light-grey;
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	font-size: 14px;
+	/*font-family: 'Nobile', serif;*/ /*text-transform: uppercase;*/
+}
+
+#menu { /*background-color: #3b7687;*/
+	background-color: black;
+	/*padding: 6px 30px 6px 0;*/
+	text-align: right;
+}
+
+#menu a {
+	color: #c5d6db;
+	text-decoration: none;
+	font-size: 14px;
+	/*font-family: 'Nobile', serif;*/
+	text-transform: uppercase;
+}
+
+#menu a:hover {
+	color: #ecf2f3;
+}
+
+/*
+#sidebar {
+	float: left;
+	width: 160px;
+	padding: 30px 30px 0 30px;
+	margin: 0;
+	color: #444444;
+	text-align: center;
+}
+
+#sidebar a {
+	text-decoration: none;
+	color: #262626;
+	font-family: "Lucida Sans Unicode";
+	font-size: 12px;
+}
+
+#sidebar a:hover {
+	color: #666666;
+}
+
+#sidebar img {
+	border: solid 1px #d6d6d6;
+}
+*/
+.project {
+	margin: 15px 0 25px 0;
+}
+
+h1 {
+	margin: 0px;
+	color: #869843;
+	font-size: 24px;
+	font-family: "Arial Narrow";
+	font-weight: normal;
+}
+
+h2 {
+	color: #3b7687;
+	font-size: 15px;
+	margin: 20px 0 5px 0;
+}
+
+#main { /*background-image: url(images/bg.gif);*/
+	
+}
+
+#text {
+	margin: 0 0 0 220px;
+	padding: 25px 30px 30px 30px;
+	color: #444444;
+	/*font-family: "Georgia";*/
+	font-size: 13px;
+	line-height: 18px;
+	text-align: justify;
+}
+
+#text a {
+	color: #3b7687;
+	text-decoration: none;
+}
+
+#text a:hover {
+	color: #444444;
+}
+
+.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button,.ui-tabs .ui-tabs-nav li.ui-tabs-selected,.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default,.ui-tabs .ui-tabs-panel
+	{
+	font-family: 'Nobile', serif;
+	font-size: 16px;
+}
+
+.footer { /*padding: 6px 30px 6px 30px; */
+  border-width: 1px;
+  border-style: solid;
+	/*font-family: 'Nobile', serif;*/
+	font-size: 36px;
+	text-shadow: 4px 4px 4px #aaa;
+	font-size: 11px;
+	text-align: right;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #262626;
+}
+
+.footer a:hover {
+	color: #666666;
+}
+
+.separator {
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+.clear {
+	clear: both;
+}
+
+.wf-loading p {
+	font-family: serif
+}
+
+.wf-inactive p {
+	font-family: serif
+}
+
+.wf-active p { /*font-family: 'Nobile', serif*/
+	
+}
+
+.wf-loading p {
+	font-family: serif;
+	font-size: 16px
+}
+
+.wf-inactive h1 {
+	font-family: serif;
+	font-size: 16px
+}
+
+.wf-active h1 {
+	font-family: 'Nobile', serif;
+	font-size: 36px;
+	text-shadow: 4px 4px 4px #aaa;
+}
+
+#txtSearch {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.cmdFormSearch {
+	font-size: 9px;
+}
+
+#searchBox {
+	text-align: right;
+}

@@ -1,0 +1,11 @@
+.buildpath
+.project
+.settings/
+application/config/database.php
+application/logs/log-*.php
+application/cache/*
+application/cache/!index.html
+application/config/development/facebook.php
+application/config/stage/facebook.php
+application/config/prod/facebook.php
+user_guide
