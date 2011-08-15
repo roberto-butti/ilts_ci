@@ -21,7 +21,7 @@
       logout();
     });
     FB.getLoginStatus(function(response) {
-      if (response.session) {
+      if (response.authResponse) {
         login();
         // logged in and connected user, someone you know
       } else {
