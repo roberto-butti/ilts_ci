@@ -14,27 +14,6 @@ class IltsController extends CI_Controller {
     $this->load->model('Profile_model',"profile");
   }
   
-  /**
-   * torna lo user id di facebook.
-   * Se utente non autenticato o sessione non definita,
-   * torna stringa vuota "".
-   */
-  protected function getUidSessionFacebook() {
-    $uid = "";
-    $user = $this->getFacebookSession();
-    if ($user) {
-      log_message("info", __METHOD__." user: ".$user);
-      //if (key_exists("uid", $session)) {
-      //  $uid = $session["uid"];
-      //}
-      $uid = $user;
-    } else {
-      log_message("info", __METHOD__." NO USER!!! user: ".$user);
-    	
-    	// errrore recupero uid facebook
-    }
-    return $uid;
-  }
   
   
   /**
@@ -46,7 +25,7 @@ class IltsController extends CI_Controller {
    */
   protected function getProfiloId() {
     $idProfilo =0;
-    $uid = $this->getUidSessionFacebook();
+    $uid = $this->getFacebookUser();
     if ($uid != "") {
       $idProfilo=$this->profile->getProfileIdFromUid($uid);
       if ($idProfilo == 0) {
@@ -63,28 +42,24 @@ class IltsController extends CI_Controller {
   
   
   
-  protected function getFacebookSession() {
-    //Enter your Application Id and Application Secret keys
+  /**
+   * Torna l'uid utente di facebook con la modalitˆ introdotta in php sdk 3.1.1 e
+   * modalitˆ oauth 2.0. Prima si chiamava il metodo getSession() ora getUser()
+   */
+  protected function getFacebookUser() {
     $fb_config = array();
     $fb_config['appId'] = $this->config->item("ilts_fb_app_id");
     $fb_config['secret'] = $this->config->item("ilts_fb_secret");
-    //Do you want cookies enabled?
     $fb_config['cookie'] = $this->config->item("ilts_fb_cookie");;
-    //load Facebook php-sdk library with $config[] options
     $this->load->library('facebook', $fb_config);
-    //Load Session class for saving access token later
-    //$this->load->library('session');
-    //Check to see if there is an active Facebook session.
-    //We will not know if the session is valid until the call is made
-    //$session = $this->facebook->getSession();
     $user = $this->facebook->getUser();
-    //var_dump($user);
-    
-    //Check to see if the access_token is present in Facebook session data
-    //if (!empty($session['access_token'])) {
-      //Save token to Session data for later use
-    //  $this->session->set_userdata('access_token', $session['access_token']);
-    //}
-    return $user ;
+    $uid = "";
+    if ($user) {
+      log_message("info", __METHOD__." user: ".$user);
+      $uid = $user;
+    } else {
+      log_message("info", __METHOD__." NO USER!!! user: ".$user);
+    }
+    return $uid;
   }
 }

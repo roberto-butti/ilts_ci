@@ -19,7 +19,7 @@ class Api extends IltsController {
   
   function mylovedbyvideoid($videoid) {
     log_message("info", __METHOD__." videoid:".$videoid);
-    $uid = $this->getUidSessionFacebook();
+    $uid = $this->getFacebookUser();
     if ($uid != "") {
       log_message("info", __METHOD__." user from session= ".$uid);
       $loved= $this->Tags_model->queryLovedByUid($uid, $videoid);
