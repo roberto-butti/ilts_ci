@@ -27,6 +27,10 @@ class Welcome extends CI_Controller {
     }
     $this->load->view('welcome_message', $data);
   }
+  
+  function ilove($slug) {
+    //die($slug);
+  }
 }
 
 /* End of file welcome.php */

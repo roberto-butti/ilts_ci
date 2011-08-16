@@ -4,7 +4,9 @@
     
     <input class="cmdFormSearch" type="submit" id="cmdSearch" value="<?php echo $this->lang->line('ilts_search');?>">
     <br />
+    <!-- 
     <input class="cmdFormSearch" type="button" id="cmdShareSearch" value="<?php echo $this->lang->line('ilts_share');?>"> 
-    <input class="cmdFormSearch" type="button" id="cmdSuggestMe" value="<?php echo $this->lang->line('ilts_hint');?>"> 
+    <input class="cmdFormSearch" type="button" id="cmdSuggestMe" value="<?php echo $this->lang->line('ilts_hint');?>">
+     --> 
   </form> 
 </div>

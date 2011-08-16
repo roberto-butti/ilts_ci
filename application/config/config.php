@@ -26,7 +26,10 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+// modificato secondo http://codeigniter.com/wiki/mod_rewrite/
+//$config['index_page'] = 'index.php';
+$config['index_page'] = '';
+
 
 /*
 |--------------------------------------------------------------------------

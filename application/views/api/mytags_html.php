@@ -12,10 +12,11 @@ if ($query) {
 ?>
 <script>
 function loadPlaylist(idPlaylist) {
-
+//alert(idPlaylist);
 $.ajax({
   url: 'index.php/api/tags/load/'+idPlaylist,
   success: function(data) {
+    //alert(data);
     $('#tab-playing').html(data);
     
   }

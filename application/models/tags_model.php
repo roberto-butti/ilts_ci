@@ -122,9 +122,20 @@ class Tags_model extends MY_Model {
 
 
 
+  protected function generateSlug($profileid) {
+    /*
+    $slug="";
+    $uniqueNumber=mt_rand();
+    $tempVal = $profileid . "-" . $uniqueNumber;
+    $slug = md5($tempVal);
+    return $slug;
+    */
+    return md5(uniqid(mt_rand()));
+  }
 
   public function createTag($profileid, $tag) {
-    $data=array("profile_id" => $profileid, "tag"=>$tag);
+    $slug = $this->generateSlug($profileid);
+    $data=array("profile_id" => $profileid, "tag"=>$tag, "slug" => $slug);
     $mytag = $this->db->insert("mytag", $data);
     $idTag=0;
     if ($mytag) {
