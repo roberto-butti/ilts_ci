@@ -1,15 +1,15 @@
 <div id="tabs">
   <ul>
     <li><a href="#tab-video"><span><?php
-    echo img(array("src"=>"assets/images/icons/search.png", "width"=>"24", "border"=>"0"))
+    echo img(array("src"=>"/assets/images/icons/search.png", "width"=>"24", "border"=>"0"))
     ?>
     &nbsp;Cerca brani</span></a></li>
     <li><a href="#tab-playing"><span><?php
-    echo img(array("src"=>"assets/images/icons/audio_notification.png", "width"=>"24", "border"=>"0"))
+    echo img(array("src"=>"/assets/images/icons/audio_notification.png", "width"=>"24", "border"=>"0"))
     ?>
     &nbsp;Playing</span></a></li>
-    <li><a href="index.php/api/mytags"><span><?php
-    echo img(array("src"=>"assets/images/icons/star.png", "width"=>"24", "border"=>"0"))
+    <li><a href="/api/mytags"><span><?php
+    echo img(array("src"=>"/assets/images/icons/star.png", "width"=>"24", "border"=>"0"))
     ?>
     &nbsp;Playlist</span></a></li>
     

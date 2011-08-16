@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Main extends CI_Controller {
 
   function __construct()
   {
     parent::__construct();
     $this->config->load('facebook');
+    $this->load->helper('url');
   }
 
   function index()
@@ -25,13 +26,11 @@ class Welcome extends CI_Controller {
       $data["videoid"] = $lovedObject->videoid;
       $data["title"] = $lovedObject->title;
     }
-    $this->load->view('welcome_message', $data);
+    $this->load->view('main', $data);
   }
   
-  function ilove($slug) {
-    //die($slug);
-  }
+  
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file main.php */
+/* Location: ./application/controllers/main.php */

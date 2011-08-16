@@ -202,7 +202,7 @@ ilts.appendVideoDataToTable = function(tbody, entry, entryIndex) {
   buttonAddVideo.setAttribute('href', '#data');
   buttonAddVideo.setAttribute('class', 'links_add_video');
   buttonAddVideo.setAttribute('id', 'add_video_' + videoId);
-  buttonAddVideo.innerHTML = '<img src=\"assets/images/icons/button_pink_heart.png\">';
+  buttonAddVideo.innerHTML = '<img src=\"/assets/images/icons/button_pink_heart.png\">';
   buttonAddVideo.onclick = ilts.generateAddVideoLinkOnclick(entry, entryIndex,
       ilts.REFERRING_FEED_TYPE_MAIN
       //ilts.currentReferringFeedType
@@ -212,7 +212,7 @@ ilts.appendVideoDataToTable = function(tbody, entry, entryIndex) {
   buttonPlayVideo.setAttribute('href', '#');
   buttonPlayVideo.setAttribute('class', 'links_play_video');
   buttonPlayVideo.setAttribute('id', 'play_video_' + videoId);
-  buttonPlayVideo.innerHTML = '<img src=\"assets/images/icons/audio_notification.png\">';
+  buttonPlayVideo.innerHTML = '<img src=\"/assets/images/icons/audio_notification.png\">';
   buttonPlayVideo.onclick = ilts.generatePlayVideoLinkOnclick(entry.videoid, entryIndex,
 		  ilts.REFERRING_FEED_TYPE_MAIN
 		  //ilts.currentReferringFeedType
@@ -261,18 +261,15 @@ ilts.generatePlayVideoLinkOnclick = function(videoId,
                                              entryIndex, 
                                              referringFeed) {
   return function() {
+    $('#videoInfo').html("Loading video...");
     ilts.playVideo(entryIndex, referringFeed);
-
     var likeSocialPlugin = '<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;layout=box_count&amp;show_faces=true&amp;width=300&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>';
     $('#videoInfo').html(likeSocialPlugin);
-
     return false;
   };
 };
 
-ilts.generateAddVideoLinkOnclick = function(entry, 
-    entryIndex, 
-    referringFeed) {
+ilts.generateAddVideoLinkOnclick = function(entry, entryIndex, referringFeed) {
   return function() {
     //entry = ilts.jsonFeed_.items[entryIndex];
     $('#savetag_videoid').val(entry.videoid);

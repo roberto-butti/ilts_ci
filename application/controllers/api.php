@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once("iltscontroller.php");
+require_once("base/iltscontroller.php");
 /**
 * @property Loved_model $Loved_model
 * @property Tags_model $Tags_model

@@ -4,7 +4,7 @@
 <head>
 <?php $this->load->view("block/header/stylesheets");?>
 <?php $this->load->view("block/header/javascripts");?>
-<?php echo link_tag('assets/favicon.ico', 'shortcut icon', 'image/ico'); ?>
+<?php echo link_tag('/assets/favicon.ico', 'shortcut icon', 'image/ico'); ?>
 <title>I Love These Songs!!!</title>
 <script type="text/javascript">
 WebFont.load({
@@ -18,7 +18,7 @@ WebFont.load({
 </style>
 <script>
   $(document).ready(function() {
-    $("#tabs").tabs();
+    $("#tabs").tabs({ selected: 2 });
     $("#cmdSearch").button();
     $("#cmdShareSearch").button();
     $("#cmdSuggestMe").button();

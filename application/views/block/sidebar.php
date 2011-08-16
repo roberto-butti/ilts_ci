@@ -7,7 +7,7 @@
 <?php
 if ($videoid == "") { 
 ?>
-    <img src="assets/images/icons/audio_notification.png" width="64" border="0" align="left" />
+    <img src="/assets/images/icons/audio_notification.png" width="64" border="0" align="left" />
 Cerca un video e poi clicca sull'icona relativa al video per ascoltarlo
 <?php
 } else {
@@ -20,4 +20,5 @@ Cerca un video e poi clicca sull'icona relativa al video per ascoltarlo
 ?>
     </div>
    </div>
+
   </div>

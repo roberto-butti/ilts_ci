@@ -42,6 +42,10 @@ body { /*font-family: Verdana, Helvetica, sans-serif; */
   border-style: solid;
 }
 
+.sidebar_facebook_activity {
+    margin-top:10px;
+  
+}
 .login {
 	margin-top:10px;
 	margin-left: 0px;
