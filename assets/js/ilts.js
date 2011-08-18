@@ -58,7 +58,7 @@ ilts.renderListVideos = function(entries, updateDiv) {
   resultsTableContainer.appendChild(resultsTable);
   //$.each(feed.data.items, function (i, item) {
   $.each(entries, function(i, item) {
-    //alert(item.title);
+    alert(item.title);
     ilts.appendVideoDataToTable(tbody, item, i);
   }); // FINE DEL EACH
   resultsTable.appendChild(tbody);
@@ -89,6 +89,9 @@ ilts.listVideos = function(searchTerm, page) {
     $.getJSON(queryUrl, function(feed) {
       ilts.jsonFeed_ = feed.data;
 
+      var entries = [];
+      entries = videos.loadFromYoutube(feed.data);
+      /*
       var entries = new Array();
       //alert("here");
       for (var i = 0, entry; entry = feed.data.items[i]; i++) {
@@ -100,6 +103,7 @@ ilts.listVideos = function(searchTerm, page) {
         //alert(i+" "+entry.title);
         entries[i] = obj;
       }
+      */
 
 
       ilts.renderListVideos(entries);
@@ -198,6 +202,7 @@ ilts.appendVideoDataToTable = function(tbody, entry, entryIndex) {
   //operationTd.innerHTML = "<a class=\"links_add_video\" href=\"#\" id=\"add_video_"+videoId+"\"><img src=\"assets/icons/button_pink_heart.png\"></a>"+
   //"<a class=\"links_play_video\" href=\"#\" id=\"play_video_"+videoId+"\"><img src=\"assets/icons/audio_notification.png\"></a>";
 
+  /*
   var buttonAddVideo = document.createElement('a');
   buttonAddVideo.setAttribute('href', '#data');
   buttonAddVideo.setAttribute('class', 'links_add_video');
@@ -207,6 +212,8 @@ ilts.appendVideoDataToTable = function(tbody, entry, entryIndex) {
       ilts.REFERRING_FEED_TYPE_MAIN
       //ilts.currentReferringFeedType
   );
+  */
+  var buttonAddVideo = ilts.renderAddVideoLink(videoId, entry, entryIndex);
 
   var buttonPlayVideo = document.createElement('a');
   buttonPlayVideo.setAttribute('href', '#');
@@ -247,7 +254,20 @@ ilts.showMessage = function(message) {
 ilts.openFormAddSong = function() {
   $(".links_add_video").dialog();
 }
-*
+*/
+
+ilts.renderAddVideoLink = function(videoId, entry, entryIndex) {
+  var buttonAddVideo = document.createElement('a');
+  buttonAddVideo.setAttribute('href', '#data');
+  buttonAddVideo.setAttribute('class', 'links_add_video');
+  buttonAddVideo.setAttribute('id', 'add_video_' + videoId);
+  buttonAddVideo.innerHTML = '<img src=\"/assets/images/icons/button_pink_heart.png\">';
+  buttonAddVideo.onclick = ilts.generateAddVideoLinkOnclick(entry, entryIndex,
+      ilts.REFERRING_FEED_TYPE_MAIN
+      //ilts.currentReferringFeedType
+  );
+  return buttonAddVideo;
+}
 
 /**
  * Returns a function that can be added as an event handler for playing
@@ -264,6 +284,8 @@ ilts.generatePlayVideoLinkOnclick = function(videoId,
     $('#videoInfo').html("Loading video...");
     ilts.playVideo(entryIndex, referringFeed);
     var likeSocialPlugin = '<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;layout=box_count&amp;show_faces=true&amp;width=300&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>';
+    
+    
     $('#videoInfo').html(likeSocialPlugin);
     return false;
   };

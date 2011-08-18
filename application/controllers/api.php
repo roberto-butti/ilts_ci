@@ -37,7 +37,9 @@ class Api extends IltsController {
     $data = array();
     log_message("info", __METHOD__." load loved form tag id:".$idtag);
     $data["query"] = $this->Tags_model->queryLovedFromTagId($idtag);
-    var_dump($data["query"]);
+    $this->output->set_header('Content-type: application/json');
+    $this->output->set_output(json_encode($data["query"]->result_array()));
+    //var_dump($data["query"]->result_array());
   }
 
   /**

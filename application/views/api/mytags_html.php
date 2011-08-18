@@ -16,8 +16,12 @@ function loadPlaylist(idPlaylist) {
 $.ajax({
   url: '/api/tags/load/'+idPlaylist,
   success: function(data) {
+  var entries = [];
+  entries = videos.loadFromMyTags(data);
+  //alert(entries);
+  ilts.renderListVideos(entries);
     //alert(data);
-    $('#tab-playing').html(data);
+    //$('#tab-playing').html(data);
     
   }
 });

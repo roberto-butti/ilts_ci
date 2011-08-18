@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once("base/iltscontroller.php");
 
-class Main extends CI_Controller {
+class Main extends IltsController {
 
   function __construct()
   {
@@ -11,21 +12,10 @@ class Main extends CI_Controller {
 
   function index()
   {
+    
     $data = array();
-    $param = $this->input->get("q");
-    $data["q"] = "";
-    if ($param) {
-      $data["q"] = $param;
-    }
-    $param = $this->input->get("loved");
-    $data["videoid"] = "";
-    $data["title"] = "";
-    if ($param) {
-      $this->load->model('Loved_model');
-      $lovedObject = $this->Loved_model->getLovedById($param);
-      $data["videoid"] = $lovedObject->videoid;
-      $data["title"] = $lovedObject->title;
-    }
+    $data = $this->initData();
+    
     $this->load->view('main', $data);
   }
   

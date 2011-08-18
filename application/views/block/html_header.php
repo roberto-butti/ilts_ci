@@ -18,7 +18,7 @@ WebFont.load({
 </style>
 <script>
   $(document).ready(function() {
-    $("#tabs").tabs({ selected: 2 });
+    $("#tabs").tabs({ selected: 0 });
     $("#cmdSearch").button();
     $("#cmdShareSearch").button();
     $("#cmdSuggestMe").button();

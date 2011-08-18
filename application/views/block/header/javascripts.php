@@ -10,7 +10,9 @@
 <script
   src="assets/js/ilts.js"
   type="text/javascript"></script>
-
+<script
+  src="assets/js/videos.js"
+  type="text/javascript"></script>
 <script type="text/javascript" src="assets/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <script type="text/javascript" src="assets/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 

@@ -15,7 +15,27 @@ class IltsController extends CI_Controller {
   }
   
   
-  
+  protected function initData () {
+    $data = array();
+    $param = $this->input->get("q");
+    $data["q"] = "";
+    if ($param) {
+      $data["q"] = $param;
+    }
+    
+    $param = $this->input->get("loved");
+    $data["videoid"] = "";
+    $data["title"] = "";
+    if ($param) {
+      $this->load->model('Loved_model');
+      $lovedObject = $this->Loved_model->getLovedById($param);
+      if ($lovedObject) {
+        $data["videoid"] = $lovedObject->videoid;
+        $data["title"] = $lovedObject->title;
+      }
+    }
+    return $data;
+  }
   /**
    *  torna l'id profilo associato all'utente loggato su sistema
    *  terze parti.

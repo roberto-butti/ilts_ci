@@ -100,6 +100,7 @@ class Tags_model extends MY_Model {
     ->join('loved', 'mytag_loved.loved_id = loved.id')
     ->where('mytag_loved.mytag_id',$tagid);
     $query = $this->db->get();
+    return $query;
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {
