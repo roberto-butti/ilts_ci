@@ -43,12 +43,12 @@ videos.loadFromMyTags = function (data) {
     obj.profileid = entry.profile_id;
     obj.title = entry.title;
     obj.thumb = entry.thumb;
-    obj.description = entry.description;
+    obj.description = entry.title;
     obj.videoid = entry.videoid;
     //alert(i+" "+entry.title);
     entries[i] = obj;
   }
-  
+  videos.list = new Array();
   videos.list = entries;
   return entries;
   

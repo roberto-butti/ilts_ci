@@ -323,8 +323,12 @@ ilts.findMediaContentHref = function(entry, type) {
 ilts.playVideo = function(entryIndex, referringFeed) {
   var entry;
   try {
-    entry = ilts.jsonFeed_.items[entryIndex];
-    videoHref = entry.content[5];
+    //entry = ilts.jsonFeed_.items[entryIndex];
+    entry = videos.list[entryIndex];
+    //videoHref = entry.content[5];
+    //http://www.youtube.com/v/1CydZtP_XlA?f=videos&app=youtube_gdata
+    videoHref = "http://www.youtube.com/v/"+entry.videoid+"?f=videos&app=youtube_gdata";
+    
     var videoPlayerDiv = document.getElementById(ilts.VIDEO_PLAYER_DIV);
     var html = [];
     html.push('<b>');
