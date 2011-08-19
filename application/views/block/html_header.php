@@ -22,12 +22,14 @@ WebFont.load({
     $("#cmdSearch").button();
     $("#cmdShareSearch").button();
     $("#cmdSuggestMe").button();
+    /*
     $("#txtSearch").autocomplete({
         source: function( request, response ) {
           return ilts.autocompleteSearch(request, response);
         },
         minLength: 2
       });
+    */
     
   });
   </script>
