@@ -34,10 +34,12 @@ class Tags_model extends MY_Model {
    * 
    */
   public function queryTagsOfUser($profileid, $query_tag = false) {
-    $this->db->select('mytag.*')
+    $this->db->select('mytag.*, count(mytag_loved.id) as quanti')
     ->from('mytag')
+    ->join('mytag_loved', 'mytag.id = mytag_loved.mytag_id')
     ->where('profile_id',$profileid)
-    ->order_by("tag", "ASC")
+    ->group_by('mytag.id')
+    ->order_by("quanti", "DESC")
     ;
     if ($query_tag) {
       $this->db->like("tag", $query_tag);

@@ -3,7 +3,7 @@
 Ehi! Do you love this Song?
 <div id="savetag_thumb"></div>
 <div id="savetag_title"></div>
-    <form id="formsavetag" action="<?php echo site_url("api/tags/add");?>" method="post"  class="myform" accept-charset="utf-8">
+    <form id="formsavetag" action="<?php echo generate_url_from_routing("api/tags/add");?>" method="post"  class="myform" accept-charset="utf-8">
     <label for="tags">Playlist</label>
     <input type="text" id="tagsauto" name="mytags" />
     <ul id="mytags"></ul>
@@ -21,7 +21,7 @@ Ehi! Do you love this Song?
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
   $("#tagsauto").autocomplete({
-    source: "<?php echo site_url("api/mytags/autocomplete");?>",
+    source: "<?php echo generate_url_from_routing("api/mytags/autocomplete");?>",
     width: 320,
     max: 10,
     minLength: 1,

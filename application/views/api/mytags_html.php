@@ -3,7 +3,7 @@ echo "<p>Ecco le tue playlist</p>";
 if ($query) {
   echo "<ul class'tag'>";
   foreach ($query->result() as $item) {
-    echo "<li><a class='tag' href='#' onclick='loadPlaylist(".$item->id.")'>".$item->tag."</a></li>";
+    echo "<li><a class='tag' href='#' onclick='loadPlaylist(".$item->id.")'>".$item->tag."</a> (".$item->quanti.")</li>";
   }
   echo "</ul>";
 } else {

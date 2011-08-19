@@ -33,6 +33,10 @@ class Api extends IltsController {
     }
   }
 
+  /**
+   * espone in formato json i video appartenenti ad un certo tag
+   * @param $idtag
+   */
   function loadtag($idtag) {
     $data = array();
     log_message("info", __METHOD__." load loved form tag id:".$idtag);
@@ -50,6 +54,7 @@ class Api extends IltsController {
   function addtags() {
     $idProfile = $this->getProfiloId();
     if ($idProfile != 0) {
+      log_message("info", __METHOD__." for id profile:".$idProfile);
       $tags = array();
       $mytagsString = $this->input->post("mytags");
       $this->Loved_model->setProfileId($idProfile);
@@ -57,6 +62,8 @@ class Api extends IltsController {
       $this->Loved_model->setTitle($this->input->post("videotitle"));
       $this->Loved_model->setThumb($this->input->post("videothumb"));
       $idLoved = $this->Loved_model->save();
+      log_message("info", __METHOD__." saved loved:".$idLoved);
+      
       $mytags = $this->Tags_model->explodeTags($mytagsString);
       $this->Tags_model->saveTagsForLoved($mytags, $this->Loved_model, $idLoved);
     } else {
