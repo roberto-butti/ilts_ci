@@ -58,7 +58,7 @@ ilts.renderListVideos = function(entries, updateDiv) {
   resultsTableContainer.appendChild(resultsTable);
   //$.each(feed.data.items, function (i, item) {
   $.each(entries, function(i, item) {
-    alert(item.title);
+    //alert(item.title);
     ilts.appendVideoDataToTable(tbody, item, i);
   }); // FINE DEL EACH
   resultsTable.appendChild(tbody);
