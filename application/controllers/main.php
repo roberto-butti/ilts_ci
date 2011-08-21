@@ -8,6 +8,7 @@ class Main extends IltsController {
     parent::__construct();
     $this->config->load('facebook');
     $this->load->helper('iltsfrontend');
+    $this->load->helper('language');
   }
 
   function index()

@@ -4,9 +4,11 @@
 <script
   src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"
   type="text/javascript"></script>
+<!-- 
 <script
   src="https://ajax.googleapis.com/ajax/libs/webfont/1.0.16/webfont.js"
   type="text/javascript"></script>
+ -->
 <script
   src="assets/js/ilts.js"
   type="text/javascript"></script>

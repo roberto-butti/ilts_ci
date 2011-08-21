@@ -39,7 +39,7 @@ ilts.autocompleteSearch = function(request, response) {
 
 /**
  * fa il render dei video elencati nell'array entries
- * Ciascuna posizione dell'array  definita come object:
+ * Ciascuna posizione dell'array Ã¨ definita come object:
  * entry.title
  * entry.thumb
  * entry.description
@@ -47,6 +47,8 @@ ilts.autocompleteSearch = function(request, response) {
  */
 ilts.renderListVideos = function(entries, updateDiv) {
   updateDiv = typeof(updateDiv) != 'undefined' ? updateDiv : 'searchResultsVideoListTable';
+  
+  ilts.log("i will update: "+updateDiv);
   var resultsTableContainer = document.getElementById(updateDiv);
   while (resultsTableContainer.childNodes.length >= 1) {
     resultsTableContainer.removeChild(resultsTableContainer.firstChild);
@@ -250,6 +252,11 @@ ilts.appendVideoDataToTable = function(tbody, entry, entryIndex) {
 ilts.showMessage = function(message) {
   alert(message);
 };
+
+
+ilts.log = function (stringa) {
+  console.log(stringa);
+} 
 /*
 ilts.openFormAddSong = function() {
   $(".links_add_video").dialog();
@@ -283,10 +290,11 @@ ilts.generatePlayVideoLinkOnclick = function(videoId,
   return function() {
     $('#videoInfo').html("Loading video...");
     ilts.playVideo(entryIndex, referringFeed);
-    var likeSocialPlugin = '<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;layout=box_count&amp;show_faces=true&amp;width=300&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>';
-    
-    
-    $('#videoInfo').html(likeSocialPlugin);
+    //var likeSocialPlugin = '<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;layout=box_count&amp;show_faces=true&amp;width=300&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>';
+    var likeSocialPlugin = '';
+    var entry = videos.list[entryIndex]
+    $('#videoInfo').append(ilts.renderAddVideoLink(videoId,entry, entryIndex));
+    //$('#videoInfo').html(likeSocialPlugin);
     return false;
   };
 };
@@ -354,6 +362,7 @@ ilts.playVideo = function(entryIndex, referringFeed) {
  *     returned by the YouTube data API.
  */
 ilts.listVideosCallback = function(data) {
+  return null;
   // Stores the json data returned for later lookup by entry index value
   ilts.jsonFeed_ = data.feed;
   ilts.currentReferringFeedType = ilts.REFERRING_FEED_TYPE_MAIN;

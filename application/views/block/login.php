@@ -1,4 +1,4 @@
-<div id="login_box" class="grid_5 login">
+<div id="login_box" class="grid_3 login">
   <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -25,24 +25,6 @@
         login();
         // logged in and connected user, someone you know
       } else {
-        /*
-        FB.login(function(response) {
-          if (response.session) {
-            if (response.perms) {
-              // user is logged in and granted some permissions.
-              // perms is a comma separated list of granted permissions
-              $('#facebook_login_status').html('ok you are logged in and granted permission')
-            } else {
-              // user is logged in, but did not grant any permissions
-              $('#facebook_login_status').html('ok you are logged with NO permission')
-            }
-          } else {
-            // user is not logged in
-              $('#facebook_login_status').html('Log in to enable application')
-          }
-        $('#facebook_login_status').html("ok")
-        }, {perms:'read_stream,publish_stream,user_likes'});
-        */
         logout();
         // no user session available, someone you dont know
       }
@@ -99,7 +81,7 @@
   }
 </script>
 <div id="facebook_login_status">
-    Log in to enable application
+    Log in :)
     </div>
 <fb:login-button autologoutlink="true" ></fb:login-button>
   </div>

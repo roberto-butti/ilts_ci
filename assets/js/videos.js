@@ -5,6 +5,16 @@ videos.VERSION = "1.0";
  */
 videos.list = {};
 
+videos.SELECTED_NONE = 0;
+videos.SELECTED_SEARCH = 1;
+videos.SELECTED_PLAYLIST = 2;
+videos.lastSelected = videos.SELECTED_NONE;
+
+videos.lastQuerySearch = "";
+
+videos.currentPlaylist = {};
+videos.currentPlaylistLoaded = false;
+
 /**
  * rappresenta il video corrente
  */
@@ -14,6 +24,10 @@ videos.current = {
     "title" : "",
     "description" : ""
 };
+
+videos.loadPlaylist = function () {
+  return "0";
+}
 
 videos.loadFromYoutube = function (feeddata) {
   var entries = new Array();

@@ -7,11 +7,13 @@
 <?php echo link_tag('/assets/favicon.ico', 'shortcut icon', 'image/ico'); ?>
 <title>I Love These Songs!!!</title>
 <script type="text/javascript">
+/*
 WebFont.load({
     google: {
       families: ['Nobile']
     }
   });
+  */
 </script>
 <style type="text/css">
 
@@ -33,11 +35,14 @@ WebFont.load({
     
   });
   </script>
-  
+<?php
+$ga= $this->config->item('ilts_google_analytics');
+if ($ga && $ga!=""): 
+?>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-20260866-1']);
+  _gaq.push(['_setAccount', '<?php echo $ga?>']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -47,5 +52,7 @@ WebFont.load({
   })();
 
 </script>
-
+<?php
+endif; 
+?>
 </head>

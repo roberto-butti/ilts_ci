@@ -1,5 +1,6 @@
-<div id="list-playlist" class="list-playlist"><?php
-echo "<p>Ecco le tue playlist</p>";
+<div id="list-playlist" class="list-playlist">
+<p><?php echo $this->lang->line('ilts_yourplaylist');?></p>
+<?php 
 if ($query) {
   echo "<ul class'tag'>";
   foreach ($query->result() as $item) {
@@ -19,7 +20,7 @@ $.ajax({
   var entries = [];
   entries = videos.loadFromMyTags(data);
   //alert(entries);
-  ilts.renderListVideos(entries);
+  ilts.renderListVideos(entries, "lovedResultsVideoListTable");
     //alert(data);
     //$('#tab-playing').html(data);
     
