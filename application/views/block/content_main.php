@@ -9,7 +9,7 @@
     echo img(array("src"=>"/assets/images/icons/audio_notification.png", "width"=>"24", "border"=>"0"))
     ?>
     &nbsp;...<?php echo lang('ilts_whatyouplaying')?></span></a></li>
-    <li><a href="<?php echo generate_url_from_routing("api/mytags");?>"><span><?php
+    <li><a title="tab-playlist" href="<?php echo generate_url_from_routing("api/mytags");?>"><span><?php
     echo img(array("src"=>"/assets/images/icons/heart_full.png", "width"=>"24", "border"=>"0"))
     ?>
     &nbsp;...<?php echo lang('ilts_whatyoulove')?></span></a></li>
@@ -25,7 +25,7 @@
   PLAYING
   </div>
   <div id="tab-playlist">
-  <?php $this->load->view("block/loved_result")?>
+  
   <?php //$this->load->view("block/playlist")?>
   </div>
 </div>

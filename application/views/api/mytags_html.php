@@ -28,4 +28,6 @@ $.ajax({
 });
 }
 </script>
+
+<?php $this->load->view("block/loved_result")?>
 </div>
