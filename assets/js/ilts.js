@@ -330,6 +330,7 @@ ilts.findMediaContentHref = function(entry, type) {
  */
 ilts.playVideo = function(entryIndex, referringFeed) {
   var entry;
+  var videoHref;
   try {
     //entry = ilts.jsonFeed_.items[entryIndex];
     entry = videos.list[entryIndex];
