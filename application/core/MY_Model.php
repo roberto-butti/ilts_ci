@@ -5,6 +5,9 @@
  */
 class MY_Model extends CI_Model {
   
+  const RESULT_OBJECT = 1;
+  const RESULT_ARRAY = 2;
+  
   function __construct() {
     parent::__construct();
   }
@@ -24,4 +27,44 @@ class MY_Model extends CI_Model {
     $where = array($idFieldName => $id);
     return $this->db->update($table, $data, $where);
   }
+  
+  /**
+   * torna un result vuoto a seconda del tipo di risultato.
+   * Un result può essere un object oppure un array.
+   * Nel caso di object torna false, nel caso di array torna un array vuoto
+   * @param integer $format: può valere self::RESULT_OBJECT oppure self::RESULT_ARRAY
+   */
+  private function getResultEmpty($format = self::RESULT_OBJECT) {
+    $retVal = false;
+    if ($format == self::RESULT_ARRAY) {
+      $retVal = array();
+    }
+    return $retVal;
+  }
+  
+  
+  public function getResultOne($query, $format = self::RESULT_OBJECT) {
+    $retVal = $this->getResultEmpty($format);
+    if ($query->num_rows() > 0) {
+      if ($format == self::RESULT_ARRAY) {
+        $retVal = $query->row_array();
+      } else {
+        $retVal = $query->row();
+      }
+    }
+    return $retVal;
+  }
+  
+  public function getResults($query,  $format = self::RESULT_OBJECT) {
+    $retVal = $this->getResultEmpty($format);
+    if ($query->num_rows() > 0) {
+      if ($format == self::RESULT_ARRAY) {
+        $retVal = $query->result_array();
+      } else {
+        $retVal = $query->result();
+      }
+    }
+    return $retVal;
+  }
+  
 }
