@@ -1,7 +1,9 @@
 var ilts = {};
 
 ilts.MAX_RESULTS_LIST = 10;
-ilts.VIDEO_FEED_URL = 'http://gdata.youtube.com/feeds/api/videos';
+//ilts.VIDEO_FEED_URL = 'http://gdata.youtube.com/feeds/api/videos';
+ilts.VIDEO_FEED_URL = 'http://ilts.localhost/api/mockup';
+
 ilts.VIDEO_LIST_TABLE_CONTAINER_DIV = 'searchResultsVideoList';
 ilts.VIDEO_LIST_CSS_CLASS = 'videoList';
 ilts.THUMBNAIL_WIDTH = 80;

@@ -1,9 +1,18 @@
+<?php
+$url_jquery = "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js";
+$url_jquery_ui = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js";
+if (ENVIRONMENT == "development") {
+  $url_jquery = "/assets/jquery/js/jquery-1.6.2.min.js";
+  $url_jquery_ui = "/assets/jquery/js/jquery-ui-1.8.16.custom.min.js";
+}
+?>
 <script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"
+  src="<?php echo $url_jquery;?>"
   type="text/javascript"></script>
 <script
-  src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"
+  src="<?php echo $url_jquery_ui;?>"
   type="text/javascript"></script>
+  
 <!-- 
 <script
   src="https://ajax.googleapis.com/ajax/libs/webfont/1.0.16/webfont.js"

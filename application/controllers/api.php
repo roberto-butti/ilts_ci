@@ -16,7 +16,12 @@ class Api extends IltsController {
     log_message("info", __METHOD__." init OK");
     
   }
-  
+  function mockup() {
+    $data = array();
+    $random = rand(1, 3);
+    $this->output->set_header('Content-type: application/json');
+    $this->load->view('api/mockup_'.$random.'_json', $data);
+  }
   function mylovedbyvideoid($videoid) {
     log_message("info", __METHOD__." videoid:".$videoid);
     $uid = $this->getFacebookUser();
