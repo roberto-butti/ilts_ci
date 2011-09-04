@@ -52,12 +52,15 @@ class Tags_model extends MY_Model {
     ->from('mytag')
     ->where('mytag.tag',$tag)
     ->where('mytag.profile_id',$profileid);
-    $query = $this->db->get();
-    if ($query->num_rows() > 0) {
-      return $query->row();
-    } else {
-      return false;
-    }
+    return $this->getResultOne($this->db->get());
+  }
+  
+  
+  public function queryTagById($idtag, $format = MY_Model::RESULT_DEFAULT) {
+    $this->db->select('mytag.*')
+    ->from('mytag')
+    ->where('id',$idtag);
+    return $this->getResultOne($this->db->get(), $format);
   }
 
 
@@ -66,12 +69,7 @@ class Tags_model extends MY_Model {
     ->from('loved')
     ->where('loved.videoid',$videoid)
     ->where('loved.profile_id',$profileid);
-    $query = $this->db->get();
-    if ($query->num_rows() > 0) {
-      return $query->row();
-    } else {
-      return false;
-    }
+    return $this->getResultOne($this->db->get());
   }
 
   public function queryLovedByUid($uid, $videoid) {
@@ -82,12 +80,7 @@ class Tags_model extends MY_Model {
     ->join('mytag', 'mytag.id = mytag_loved.mytag_id')
     ->where('loved.videoid',$videoid)
     ->where('profile.identifier',$uid);
-    $query = $this->db->get();
-    if ($query->num_rows() > 0) {
-      return $query->result();
-    } else {
-      return false;
-    }
+    return $this->getResults($this->db->get());
   }
 
   
@@ -96,18 +89,12 @@ class Tags_model extends MY_Model {
    * @param int $tagid
    * 
    */
-  public function queryLovedFromTagId($tagid) {
+  public function queryLovedFromTagId($tagid, $format = MY_Model::RESULT_DEFAULT) {
     $this->db->select('loved.*')
     ->from('mytag_loved')
     ->join('loved', 'mytag_loved.loved_id = loved.id')
     ->where('mytag_loved.mytag_id',$tagid);
-    $query = $this->db->get();
-    return $query;
-    if ($query->num_rows() > 0) {
-      return $query->result();
-    } else {
-      return false;
-    }
+    return $this->getResults($this->db->get(), $format);
   }
 
   public function queryLovedTag($lovedid, $tagid) {

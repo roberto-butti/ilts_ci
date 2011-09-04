@@ -1,5 +1,5 @@
 <?php
-class Profile_model extends CI_Model {
+class Profile_model extends MY_Model {
   
   const DEFAULT_PROVIDER = "facebook";
   
@@ -23,7 +23,7 @@ class Profile_model extends CI_Model {
       $row = $query->row();
       return $row->id;
     } else {
-      return 0;
+      return -1;
     }
   }
   

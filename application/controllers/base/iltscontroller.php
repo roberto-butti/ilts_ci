@@ -46,9 +46,10 @@ class IltsController extends CI_Controller {
   protected function getProfiloId() {
     $idProfilo =0;
     $uid = $this->getFacebookUser();
-    if ($uid != "") {
+    log_message("info", __METHOD__." profilo fb uid:".$uid);
+    if ($uid !== "") {
       $idProfilo=$this->profile->getProfileIdFromUid($uid);
-      if ($idProfilo == 0) {
+      if ($idProfilo == -1) {
         //profilo non censito nell'applicazione
         $idProfilo=$this->profile->createProfile($uid);
       }
@@ -63,8 +64,8 @@ class IltsController extends CI_Controller {
   
   
   /**
-   * Torna l'uid utente di facebook con la modalitˆ introdotta in php sdk 3.1.1 e
-   * modalitˆ oauth 2.0. Prima si chiamava il metodo getSession() ora getUser()
+   * Torna l'uid utente di facebook con la modalitÃ  introdotta in php sdk 3.1.1 e
+   * modalitÃ  oauth 2.0. Prima si chiamava il metodo getSession() ora getUser()
    */
   protected function getFacebookUser() {
     $fb_config = array();
@@ -73,13 +74,14 @@ class IltsController extends CI_Controller {
     $fb_config['cookie'] = $this->config->item("ilts_fb_cookie");;
     $this->load->library('facebook', $fb_config);
     $user = $this->facebook->getUser();
-    $uid = "";
+    $uid = 0;
     if ($user) {
       log_message("info", __METHOD__." user: ".$user);
       $uid = $user;
     } else {
       log_message("info", __METHOD__." NO USER!!! user: ".$user);
     }
+    log_message("info", __METHOD__." facebook uid = ".$uid);
     return $uid;
   }
 }

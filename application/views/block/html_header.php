@@ -32,8 +32,27 @@ WebFont.load({
         minLength: 2
       });
     */
-    
+    $('#tabs').bind('tabsselect', function(event, ui) {
+      if (ui.index == 2) {
+        $.ajax({
+          url: "<?php echo generate_url_from_routing("api/mytags");?>",
+          context: document.body,
+          success: function(data){
+            videos.loadLoved(data)
+            
+          }
+        });
+      }
+      // Objects available in the function context:
+      //alert (ui.tab);     // anchor element of the selected (clicked) tab
+      //alert(ui.panel);   // element, that contains the selected/clicked tab contents
+      //alert(ui.index);   // zero-based index of the selected (clicked) tab
+
+   });
+     
   });
+  
+  
   </script>
 <?php
 $ga= $this->config->item('ilts_google_analytics');

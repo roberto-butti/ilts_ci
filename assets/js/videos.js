@@ -15,6 +15,10 @@ videos.lastQuerySearch = "";
 videos.currentPlaylist = {};
 videos.currentPlaylistLoaded = false;
 
+videos.lovedPlaylist = {}
+videos.lovedLoaded = false
+videos.lovedLastPlaylistSelected = -1;
+
 /**
  * rappresenta il video corrente
  */
@@ -25,9 +29,6 @@ videos.current = {
     "description" : ""
 };
 
-videos.loadPlaylist = function () {
-  return "0";
-}
 
 videos.loadFromYoutube = function (feeddata) {
   var entries = new Array();
@@ -45,13 +46,45 @@ videos.loadFromYoutube = function (feeddata) {
   return entries;
 }
 
+
+videos.loadMytags = function (idPlaylistselected) {
+  $.ajax({
+    url: '/api/mytags/htmltag',
+    success: function(data) {
+      $("#loved_playlist").html(data);
+    }
+  });
+  
+}
+
+videos.loadPlaylist = function (idPlaylist) {
+//alert(idPlaylist);
+// api/loved/my/
+  
+$.ajax({
+  url: '/api/tags/load/'+idPlaylist,
+  success: function(data) {
+  videos.lovedLastPlaylistSelected = idPlaylist;
+  var entries = [];
+  entries = videos.loadFromMyTags(data);
+  $("#loved_current_title").html(data.tag.tag);
+  //alert(entries);
+  ilts.renderListVideos(entries, "lovedResultsVideoListTable");
+    //alert(data);
+    //$('#tab-playing').html(data);
+    
+  }
+});
+
+}
+
 videos.loadFromMyTags = function (data) {
   var entries = new Array();
   //alert(data);
   //alert(data.length);
   
   //return null;
-  for (var i = 0, entry; entry = data[i]; i++) {
+  for (var i = 0, entry; entry = data.list[i]; i++) {
     var obj = new Object();
     obj.id = entry.id;
     obj.profileid = entry.profile_id;
@@ -65,5 +98,18 @@ videos.loadFromMyTags = function (data) {
   videos.list = new Array();
   videos.list = entries;
   return entries;
+  
+}
+
+videos.loadLoved = function (data) {
+  if ( ! videos.lovedLoaded) {
+    $('#tab-playlist').html(data);
+    videos.lovedLoaded = true;
+  } else {
+    videos.loadMytags(videos.lovedLastPlaylistSelected);
+    if (videos.lovedLastPlaylistSelected >0) {
+      videos.loadPlaylist(videos.lovedLastPlaylistSelected);
+    }
+  }
   
 }

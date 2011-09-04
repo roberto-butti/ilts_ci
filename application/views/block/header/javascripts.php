@@ -1,7 +1,9 @@
 <?php
 $url_jquery = "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js";
 $url_jquery_ui = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js";
-if (ENVIRONMENT == "development") {
+$wannaLocal = ENVIRONMENT == "development";
+$wannaLocal = true;
+if ($wannaLocal) {
   $url_jquery = "/assets/jquery/js/jquery-1.6.2.min.js";
   $url_jquery_ui = "/assets/jquery/js/jquery-ui-1.8.16.custom.min.js";
 }
@@ -24,6 +26,8 @@ if (ENVIRONMENT == "development") {
 <script
   src="assets/js/videos.js"
   type="text/javascript"></script>
+  
+  
 <script type="text/javascript" src="assets/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <script type="text/javascript" src="assets/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 

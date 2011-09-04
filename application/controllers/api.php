@@ -13,6 +13,7 @@ class Api extends IltsController {
     parent::__construct();
     $this->load->model('Tags_model');
     $this->load->model('Loved_model');
+    $this->load->helper('language');
     log_message("info", __METHOD__." init OK");
     
   }
@@ -45,9 +46,11 @@ class Api extends IltsController {
   function loadtag($idtag) {
     $data = array();
     log_message("info", __METHOD__." load loved form tag id:".$idtag);
-    $data["query"] = $this->Tags_model->queryLovedFromTagId($idtag);
+    $data["query"] = array();
+    $data["query"]["list"] = $this->Tags_model->queryLovedFromTagId($idtag, MY_Model::RESULT_ARRAY);
+    $data["query"]["tag"] = $this->Tags_model->queryTagById($idtag, MY_Model::RESULT_ARRAY);
     $this->output->set_header('Content-type: application/json');
-    $this->output->set_output(json_encode($data["query"]->result_array()));
+    $this->output->set_output(json_encode($data["query"]));
     //var_dump($data["query"]->result_array());
   }
 
@@ -76,6 +79,8 @@ class Api extends IltsController {
       echo "User not logged";
     }
   }
+  
+  
   
   
   /**
@@ -118,6 +123,9 @@ class Api extends IltsController {
           }
           */
           $this->output->set_output($string);
+          break;
+        case "htmltag":
+          $this->load->view('block/loved_playlist', $data);
           break;
         default:
           $this->load->view('api/mytags_'.$format, $data);

@@ -38,9 +38,12 @@
 |
 */
 $route['api/mytags'] = "api/mytags/html";
-$route['api/mytags/json'] = "api/mytags/json";
+$route['api/mytags/(json|htmltag)'] = "api/mytags/$1";
+
 $route['api/tags/add'] = "api/addtags";
+// carica le canzoni relative al TAG con ID specificato
 $route['api/tags/load/(:any)'] = "api/loadtag/$1";
+
 $route['api/loved/my/(:any)'] = "api/mylovedbyvideoid/$1";
 $route['ilove/(:any)'] = "playlist/ilove/$1";
 $route['default_controller'] = "main";

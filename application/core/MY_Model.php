@@ -7,6 +7,10 @@ class MY_Model extends CI_Model {
   
   const RESULT_OBJECT = 1;
   const RESULT_ARRAY = 2;
+  const RESULT_QUERY = 3;
+  
+  const RESULT_DEFAULT = self::RESULT_OBJECT;
+  
   
   function __construct() {
     parent::__construct();
@@ -34,7 +38,7 @@ class MY_Model extends CI_Model {
    * Nel caso di object torna false, nel caso di array torna un array vuoto
    * @param integer $format: può valere self::RESULT_OBJECT oppure self::RESULT_ARRAY
    */
-  private function getResultEmpty($format = self::RESULT_OBJECT) {
+  private function getResultEmpty($format = self::RESULT_DEFAULT) {
     $retVal = false;
     if ($format == self::RESULT_ARRAY) {
       $retVal = array();
@@ -43,11 +47,13 @@ class MY_Model extends CI_Model {
   }
   
   
-  public function getResultOne($query, $format = self::RESULT_OBJECT) {
+  public function getResultOne($query, $format = self::RESULT_DEFAULT) {
     $retVal = $this->getResultEmpty($format);
     if ($query->num_rows() > 0) {
       if ($format == self::RESULT_ARRAY) {
         $retVal = $query->row_array();
+      } elseif ($format == self::RESULT_QUERY) {
+        $retVal = $query;
       } else {
         $retVal = $query->row();
       }
@@ -55,11 +61,13 @@ class MY_Model extends CI_Model {
     return $retVal;
   }
   
-  public function getResults($query,  $format = self::RESULT_OBJECT) {
+  public function getResults($query,  $format = self::RESULT_DEFAULT) {
     $retVal = $this->getResultEmpty($format);
     if ($query->num_rows() > 0) {
       if ($format == self::RESULT_ARRAY) {
         $retVal = $query->result_array();
+      } elseif ($format == self::RESULT_QUERY) {
+        $retVal = $query;
       } else {
         $retVal = $query->result();
       }

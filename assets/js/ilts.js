@@ -66,7 +66,7 @@ ilts.renderListVideos = function(entries, updateDiv) {
     ilts.appendVideoDataToTable(tbody, item, i);
   }); // FINE DEL EACH
   resultsTable.appendChild(tbody);
-
+/*
   $('a.links_add_video').fancybox({
     'width' : '75%',
     'height' : '75%',
@@ -77,6 +77,7 @@ ilts.renderListVideos = function(entries, updateDiv) {
   'speedIn' : 600,
   'speedOut' : 200
   });
+  */
 };
 
 ilts.listVideos = function(searchTerm, page) {
@@ -381,3 +382,15 @@ ilts.listVideosCallback = function(data) {
     });
 };
 
+function onPlayerStateChange(newState) {
+  if (newState == 0) {
+    alert ("finito");
+  }
+}
+
+function onYouTubePlayerReady(playerId) {
+  var videoPlayerDiv = document.getElementById(ilts.VIDEO_PLAYER_DIV);
+  // This causes the updatePlayerInfo function to be called every 250ms to
+  // get fresh data from the player
+  videoPlayerDiv.addEventListener("onStateChange", "onPlayerStateChange");
+}

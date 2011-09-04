@@ -1,33 +1,28 @@
 <div id="list-playlist" class="list-playlist">
+<?php
+if ($query->result()) { 
+?>
 <p><?php echo $this->lang->line('ilts_yourplaylist');?></p>
+<div id="loved_playlist">
 <?php 
-if ($query) {
-  echo "<ul class'tag'>";
-  foreach ($query->result() as $item) {
-    echo "<li><a class='tag' href='#' onclick='loadPlaylist(".$item->id.")'>".$item->tag."</a> (".$item->quanti.")</li>";
-  }
-  echo "</ul>";
+$data = array();
+$data["query"] = $query;
+$this->load->view("block/loved_playlist", $data);
+?>
+
+</div>
+<div id="loved_result">
+<?php 
+$this->load->view("block/loved_result");
+
+?>
+</div>
+<?php 
 } else {
-  echo "No Playlist!!!";
+?>
+<p><?php echo $this->lang->line('ilts_yourplaylist_empty');?></p>
+<?php 
 }
 ?>
-<script>
-function loadPlaylist(idPlaylist) {
-//alert(idPlaylist);
-$.ajax({
-  url: '/api/tags/load/'+idPlaylist,
-  success: function(data) {
-  var entries = [];
-  entries = videos.loadFromMyTags(data);
-  //alert(entries);
-  ilts.renderListVideos(entries, "lovedResultsVideoListTable");
-    //alert(data);
-    //$('#tab-playing').html(data);
-    
-  }
-});
-}
-</script>
 
-<?php $this->load->view("block/loved_result")?>
 </div>
