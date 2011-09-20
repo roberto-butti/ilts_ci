@@ -1,4 +1,5 @@
 .buildpath
+build.xml
 .project
 .settings/
 application/config/database.php
