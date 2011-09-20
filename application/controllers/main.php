@@ -13,7 +13,7 @@ class Main extends IltsController {
 
   function index()
   {
-    
+    $this->output->cache(1);
     $data = array();
     $data = $this->initData();
     
