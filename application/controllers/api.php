@@ -6,6 +6,11 @@ require_once("base/iltscontroller.php");
 */
 class Api extends IltsController {
   
+  const LABEL_STATUS = "status";
+  const LABEL_STATUS_STATUS = "status";
+  const LABEL_STATUS_CODE = "code";
+  const LABEL_STATUS_MESSAGE = "message";
+  
   /**
    * 
    */
@@ -17,12 +22,33 @@ class Api extends IltsController {
     log_message("info", __METHOD__." init OK");
     
   }
+  
+  private function convertArrayIntoString($array)  {
+    $string = "";
+    if (is_array($array)) {
+      foreach ($array as $k => $v) {
+        $string = $string. " / $k: $v";
+      }
+    }
+    return $string;
+  }
+  
+  private function prepareArrayMessage($status = "OK", $code = "000", $message = "") {
+    $data = array();
+    $data[self::LABEL_STATUS_STATUS] = $status;
+    $data[self::LABEL_STATUS_CODE] = $code;
+    $data[self::LABEL_STATUS_MESSAGE] = $message;
+    log_message("info", __METHOD__." preparing : ".$this->convertArrayIntoString($data));
+    return $data;
+  }
+  
   function mockup() {
     $data = array();
     $random = rand(1, 3);
     $this->output->set_header('Content-type: application/json');
     $this->load->view('api/mockup_'.$random.'_json', $data);
   }
+  
   function mylovedbyvideoid($videoid) {
     log_message("info", __METHOD__." videoid:".$videoid);
     $uid = $this->getFacebookUser();
@@ -41,21 +67,50 @@ class Api extends IltsController {
 
   /**
    * espone in formato json i video appartenenti ad un certo tag
-   * @param $idtag
+   * Secondo le regole di routing:
+   * api/tags/load/$idtag
+   * Esempio:
+   * /api/tags/load/1
+   * @param $idtag idetinficatore del tag
    */
   function loadtag($idtag) {
+    
+    $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+    
     $data = array();
-    log_message("info", __METHOD__." load loved form tag id:".$idtag);
-    $data["query"] = array();
-    $data["query"]["list"] = $this->Tags_model->queryLovedFromTagId($idtag, MY_Model::RESULT_ARRAY);
-    $data["query"]["tag"] = $this->Tags_model->queryTagById($idtag, MY_Model::RESULT_ARRAY);
-    $data["query"]["tag"]["pre_title"] =lang('ilts_yourselectedplaylist');
+    $key_cache = 'tag_'.$idtag;
+    //$this->cache->delete($key_cache);
+    if ( ! $cached_tag = $this->cache->get($key_cache)) {
+      log_message("info", __METHOD__." load loved form tag id:".$idtag);
+      $data["query"] = array();
+      $data["query"]["list"] = $this->Tags_model->queryLovedFromTagId($idtag, MY_Model::RESULT_ARRAY);
+      $data["query"]["tag"] = $this->Tags_model->queryTagById($idtag, MY_Model::RESULT_ARRAY);
+      $data["query"]["tag"]["pre_title"] =lang('ilts_yourselectedplaylist');
+      $status = array();
+      if (sizeof($data["query"]["list"] ) ==0 ) {
+        $status = $this->prepareArrayMessage("EMPTY", "404", "No tags found");
+      } else {
+        $status = $this->prepareArrayMessage();
+      }
+      $data["query"][self::LABEL_STATUS] = $status;
+      $this->cache->save($key_cache, $data["query"], 5);
+    } else {
+      $cached_tag[self::LABEL_STATUS][self::LABEL_STATUS_MESSAGE] = "result cached!";
+      log_message("info", __METHOD__." result from cache ".$this->prepareArrayMessage($cached_tag));
+      $data["query"] = $cached_tag;
+    }
     $this->output->set_header('Content-type: application/json');
     $this->output->set_output(json_encode($data["query"]));
     //var_dump($data["query"]->result_array());
   }
 
   
+  /**
+   * Recupera in formato json l'elenco dfei video appartenenti ad un certo tag
+   * identificato dallo slug definito in input
+   * @param $slug slug relativo alla playlist di cui recuperare l'elenco dei video
+   * 
+   */
   function loadtagbyslug($slug) {
     $data = array();
     log_message("info", __METHOD__." load loved form tag slug:".$slug);
@@ -92,6 +147,23 @@ class Api extends IltsController {
       log_message("info", __METHOD__." profilo non impostato");
       echo "User not logged";
     }
+  }
+  
+  function edittags($idtag) {
+    
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('tag', 'Tag', 'required');
+    $data = array();
+    if ($this->form_validation->run() == FALSE) {
+      //errore
+      log_message("info", __METHOD__." errore durante la validazione");
+    } else {
+      $data["tag"] = $this->input->post("tag");
+      $this->Tags_model->update("tags", $data, $idtag);
+      log_message("info", __METHOD__." modificato tag id: $idtag");
+    }
+    
   }
   
   

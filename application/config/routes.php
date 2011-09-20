@@ -37,10 +37,23 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['api/mytags'] = "api/mytags/html";
-$route['api/mytags/(json|htmltag)'] = "api/mytags/$1";
 
+/*
+ * recupero del'elenco delle playlist relative e definite dall'utente corrente
+ */
+$route['api/tags/my'] = "api/mytags/html";
+$route['api/tags/my/(json|htmltag)'] = "api/mytags/$1";
+
+/*
+ * creazione di un nuovo tag
+ */
 $route['api/tags/add'] = "api/addtags";
+
+/*
+ * modifica un tag
+ */
+$route['api/tags/edit/(:any)'] = "api/edittags/$1";
+
 // carica le canzoni relative al TAG con ID specificato
 $route['api/tags/load/(:any)'] = "api/loadtag/$1";
 

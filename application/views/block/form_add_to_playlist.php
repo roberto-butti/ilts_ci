@@ -21,7 +21,7 @@ Ehi! Do you love this Song?
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
   $("#tagsauto").autocomplete({
-    source: "<?php echo generate_url_from_routing("api/mytags/autocomplete");?>",
+    source: "<?php echo generate_url_from_routing("api/tags/my/autocomplete");?>",
     width: 320,
     max: 10,
     minLength: 1,

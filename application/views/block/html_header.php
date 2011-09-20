@@ -42,7 +42,7 @@ WebFont.load({
     $('#tabs').bind('tabsselect', function(event, ui) {
       if (ui.index == 2) {
         $.ajax({
-          url: "<?php echo generate_url_from_routing("api/mytags");?>",
+          url: "<?php echo generate_url_from_routing("api/tags/my");?>",
           context: document.body,
           success: function(data){
             videos.loadLoved(data)

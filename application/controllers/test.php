@@ -17,6 +17,7 @@ class Test extends CI_Controller {
     $test = 1 + 1;
     $expected_result = 2;
     $test_name = 'Adds one plus one';
+   
     $this->unit->run($test, $expected_result, $test_name);
 
     $test = 1 + 1;
