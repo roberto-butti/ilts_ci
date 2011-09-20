@@ -49,11 +49,25 @@ class Api extends IltsController {
     $data["query"] = array();
     $data["query"]["list"] = $this->Tags_model->queryLovedFromTagId($idtag, MY_Model::RESULT_ARRAY);
     $data["query"]["tag"] = $this->Tags_model->queryTagById($idtag, MY_Model::RESULT_ARRAY);
+    $data["query"]["tag"]["pre_title"] =lang('ilts_yourselectedplaylist');
     $this->output->set_header('Content-type: application/json');
     $this->output->set_output(json_encode($data["query"]));
     //var_dump($data["query"]->result_array());
   }
 
+  
+  function loadtagbyslug($slug) {
+    $data = array();
+    log_message("info", __METHOD__." load loved form tag slug:".$slug);
+    $tagObject = $this->Tags_model->queryTagBySlug($slug);
+    $idTag =0;
+    if ($tagObject) {
+      $idTag = $tagObject->id;
+    }
+    log_message("info", __METHOD__." load loved form tag id:".$idTag);
+    $this->loadtag($idTag);
+  }
+  
   /**
    * aggiunge i tags nel formato tag1, tag2,tag3... identificato nel POST mytags
    * I Tag vengono associati al videoid (yt) identificato nel POST videoid

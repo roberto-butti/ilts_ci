@@ -45,6 +45,11 @@ $route['api/tags/add'] = "api/addtags";
 $route['api/tags/load/(:any)'] = "api/loadtag/$1";
 
 $route['api/loved/my/(:any)'] = "api/mylovedbyvideoid/$1";
+
+// api che ritorna l'elenco delle canzoni di una playlist con slug in input
+// torna un json
+$route['api/playlist/(:any)'] = "api/loadtagbyslug/$1";
+
 $route['ilove/(:any)'] = "playlist/ilove/$1";
 $route['default_controller'] = "main";
 

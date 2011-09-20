@@ -63,7 +63,13 @@ class Tags_model extends MY_Model {
     return $this->getResultOne($this->db->get(), $format);
   }
 
-
+  public function queryTagBySlug($slug, $format = MY_Model::RESULT_DEFAULT) {
+    $this->db->select('mytag.*')
+    ->from('mytag')
+    ->where('slug',$slug);
+    return $this->getResultOne($this->db->get(), $format);
+  }
+  
   public function queryLoved($profileid, $videoid) {
     $this->db->select('loved.*')
     ->from('loved')
