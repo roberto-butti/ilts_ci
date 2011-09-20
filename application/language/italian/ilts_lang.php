@@ -10,3 +10,5 @@ $lang['ilts_whatyouplaying'] = "stai ascoltando";
 $lang['ilts_whatyou'] = "Quello che...";
 $lang['ilts_yourplaylist_empty'] = "Hey, cosa ami? Cerca la tua canzone!";
 $lang['ilts_selezionaplaylist'] = "Seleziona una delle tue playlist!";
+$lang['ilts_yourselectedplaylist'] = "La tua playlist selezionata";
+$lang['ilts_listenplaylist'] = "Ascoltala!!!";

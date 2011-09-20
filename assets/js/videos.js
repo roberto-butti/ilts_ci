@@ -67,7 +67,8 @@ $.ajax({
   videos.lovedLastPlaylistSelected = idPlaylist;
   var entries = [];
   entries = videos.loadFromMyTags(data);
-  $("#loved_current_title").html(data.tag.tag);
+  var urlPlayAll = "<a href='/ilove/"+data.tag.slug+"'>LISTEN</a>";
+  $("#loved_current_title").html(data.tag.pre_title+'&nbsp;<em>'+data.tag.tag+'</em> '+urlPlayAll);
   //alert(entries);
   ilts.renderListVideos(entries, "lovedResultsVideoListTable");
     //alert(data);

@@ -11,6 +11,9 @@ class Playlist extends IltsController {
    */
   function __construct() {
     parent::__construct();
+    $this->config->load('facebook');
+    $this->load->helper('iltsfrontend');
+    $this->load->helper('language');
     $this->load->model('Tags_model');
     $this->load->model('Loved_model');
     log_message("info", __METHOD__." init OK");
