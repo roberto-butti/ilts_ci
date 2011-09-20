@@ -20,7 +20,14 @@ WebFont.load({
 </style>
 <script>
   $(document).ready(function() {
-    $("#tabs").tabs({ selected: 0 });
+    var tabselected = 0;
+    <?php
+    
+      if (isset($slug) && $slug!= "") {
+        echo "tabselected = 1;";
+      } 
+    ?>
+    $("#tabs").tabs({ selected: tabselected });
     $("#cmdSearch").button();
     $("#cmdShareSearch").button();
     $("#cmdSuggestMe").button();
