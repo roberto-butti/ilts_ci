@@ -10,3 +10,5 @@ application/config/development/facebook.php
 application/config/stage/facebook.php
 application/config/prod/facebook.php
 user_guide
+assets/js/all.js
+assets/js/extern
