@@ -11,6 +11,9 @@ class Api extends IltsController {
   const LABEL_STATUS_CODE = "code";
   const LABEL_STATUS_MESSAGE = "message";
   
+  const LABEL_RESPONSE = "response";
+  
+  
   /**
    * 
    */
@@ -151,18 +154,33 @@ class Api extends IltsController {
   
   function edittags($idtag) {
     
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
-    $this->form_validation->set_rules('tag', 'Tag', 'required');
+    $idProfile = $this->getProfiloId();
     $data = array();
-    if ($this->form_validation->run() == FALSE) {
-      //errore
-      log_message("info", __METHOD__." errore durante la validazione");
+    
+    
+    if ($idProfile != 0) {
+      log_message("info", __METHOD__." edit tag for idprofile $idProfile and id tag $idtag");
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('form_validation');
+      $this->form_validation->set_rules('tag', 'Tag', 'required');
+      $data = array();
+      if ($this->form_validation->run() == FALSE) {
+        //errore
+        log_message("info", __METHOD__." errore durante la validazione");
+        $data[self::LABEL_STATUS] = $this->prepareArrayMessage("KO", "500", "Tag not valid");
+      } else {
+        $data["tag"] = $this->input->post("tag");
+        $this->Tags_model->update("tags", $data, $idtag);
+        log_message("info", __METHOD__." modificato tag id: $idtag");
+        $data[self::LABEL_RESPONSE]=$idtag;
+      }
     } else {
-      $data["tag"] = $this->input->post("tag");
-      $this->Tags_model->update("tags", $data, $idtag);
-      log_message("info", __METHOD__." modificato tag id: $idtag");
+      
+      $data[self::LABEL_STATUS] = $this->prepareArrayMessage("KO", "401", "User not autenticated");
     }
+    $this->output->set_header('Content-type: application/json');
+    $this->output->set_output(json_encode($data));
+    
     
   }
   

@@ -66,7 +66,7 @@ ilts.renderListVideos = function(entries, updateDiv) {
     ilts.appendVideoDataToTable(tbody, item, i);
   }); // FINE DEL EACH
   resultsTable.appendChild(tbody);
-/*
+
   $('a.links_add_video').fancybox({
     'width' : '75%',
     'height' : '75%',
@@ -77,7 +77,6 @@ ilts.renderListVideos = function(entries, updateDiv) {
   'speedIn' : 600,
   'speedOut' : 200
   });
-  */
 };
 
 ilts.listVideos = function(searchTerm, page) {
@@ -260,11 +259,11 @@ ilts.showMessage = function(message) {
 ilts.log = function (stringa) {
   console.log(stringa);
 } 
-/*
+
 ilts.openFormAddSong = function() {
   $(".links_add_video").dialog();
 }
-*/
+
 
 ilts.renderAddVideoLink = function(videoId, entry, entryIndex) {
   var buttonAddVideo = document.createElement('a');
